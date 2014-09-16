@@ -27,39 +27,37 @@ public class SpidersHttp {
 	public static final String BASE_URL = "http://image.baidu.com/channel?c=美女&t=";
 	public static final String URL1 = "小清新";
 
-	static ArrayList<Meinv> meinvList1 = new ArrayList<Meinv>();
+	// static ArrayList<Meinv> meinvList = new ArrayList<Meinv>();
 	static HashSet<Meinv> meinvList = new HashSet<Meinv>();
 	static ArrayList<Category> templist = new ArrayList<Category>();
 	static List<String> categoryList = new ArrayList<String>();
-
-	static ArrayList<Meinv> noRepeatMeinvList = new ArrayList<Meinv>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// System.out.println(executeHttpGet());
 
 		categoryList.add("小清新");
-		// categoryList.add("性感美女");
-		// categoryList.add("写真");
-		// categoryList.add("诱惑");
-		// categoryList.add("长腿");
-		// categoryList.add("甜素纯");
-		// categoryList.add("足球宝贝");
-		// categoryList.add("清纯");
-		// categoryList.add("校花");
-		// categoryList.add("网络美女");
-		// categoryList.add("唯美");
-		// categoryList.add("气质");
-		// categoryList.add("嫩萝莉");
-		// categoryList.add("时尚");
-		// categoryList.add("长发");
-		// categoryList.add("可爱");
-		// categoryList.add("车模");
-		// categoryList.add("古典美女");
-		// categoryList.add("素颜");
-		// categoryList.add("非主流");
-		// categoryList.add("短发");
-		// categoryList.add("高雅大气很有范");
+		categoryList.add("性感美女");
+		categoryList.add("写真");
+		categoryList.add("诱惑");
+		categoryList.add("长腿");
+		categoryList.add("甜素纯");
+		categoryList.add("足球宝贝");
+		categoryList.add("清纯");
+		categoryList.add("校花");
+		categoryList.add("网络美女");
+		categoryList.add("唯美");
+		categoryList.add("气质");
+		categoryList.add("嫩萝莉");
+		categoryList.add("时尚");
+		categoryList.add("长发");
+		categoryList.add("可爱");
+		categoryList.add("车模");
+		categoryList.add("古典美女");
+		categoryList.add("素颜");
+		categoryList.add("非主流");
+		categoryList.add("短发");
+		categoryList.add("高雅大气很有范");
 		// categoryList.add("全部");
 		int i = 10000;
 		DownloadMeinvImage oInstance;
@@ -93,13 +91,15 @@ public class SpidersHttp {
 			// noRepeatMeinvList.add(m);
 			// }
 			// }
+			// Set<Meinv> set = new HashSet<Meinv>(meinvList);
+			// meinvList.clear();
+			// meinvList.addAll(set);
 			System.out.println("meinvList.size() = " + meinvList.size());
 			saveToFile(gson.toJson(meinvList), "p" + i + ".data");
 			System.out.println(gson.toJson(meinvList));
 			// System.out.println(URLDecoder.decode(encode));
 			// System.out.println("list.size() = " + list.size());
 			meinvList.clear();
-			noRepeatMeinvList.clear();
 		}
 
 		// Gson gson = new Gson();
@@ -152,7 +152,7 @@ public class SpidersHttp {
 					if (desc.length() > 10) {
 						desc = desc.substring(0, 10);
 					}
-					Meinv m = new Meinv(jb.getString("imageUrl"), desc);
+					Meinv m = new Meinv(jb.getString("imageUrl").trim(), desc);
 					meinvList.add(m);
 
 					// Iterator<Meinv> it = meinvList.iterator();

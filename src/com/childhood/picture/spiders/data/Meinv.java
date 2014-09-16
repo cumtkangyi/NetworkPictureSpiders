@@ -1,6 +1,8 @@
 package com.childhood.picture.spiders.data;
 
-public class Meinv {
+import java.io.Serializable;
+
+public class Meinv implements Serializable {
 	public String url;
 	public String des;
 
@@ -11,7 +13,7 @@ public class Meinv {
 
 	@Override
 	public String toString() {
-		return "url: " + url + "\ndes: " + des;
+		return "url: " + url + " , des: " + des;
 	}
 
 	@Override
@@ -23,7 +25,7 @@ public class Meinv {
 			return true;
 		}
 		Meinv other = (Meinv) obj;
-		if (this.url == other.url) {
+		if (this.url.equals(other.url)) {
 			return true;
 		}
 		return false;
@@ -34,5 +36,4 @@ public class Meinv {
 		// TODO Auto-generated method stub
 		return this.url.hashCode();
 	}
-
 }
