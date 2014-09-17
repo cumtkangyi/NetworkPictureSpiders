@@ -27,7 +27,7 @@ import java.util.Vector;
  * @author MagicLiao
  * @version 1.0
  */
-public class DownloadMeinvImage {
+public class ImageDownloader {
 	public final static boolean DEBUG = true;// 调试用
 	private static int BUFFER_SIZE = 8096;// 缓冲区大小
 	private final Vector vDownLoad = new Vector();// URL列表
@@ -36,7 +36,7 @@ public class DownloadMeinvImage {
 	/**
 	 * 构造方法
 	 */
-	public DownloadMeinvImage() {
+	public ImageDownloader() {
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class DownloadMeinvImage {
 			url = (String) vDownLoad.get(i);
 			filename = (String) vFileList.get(i);
 			try {
-				saveToFile(url, filename);
+				excuteHttpGet(url, filename);
 			} catch (IOException err) {
 				System.out.println(err.toString());
 				if (DEBUG) {
@@ -94,7 +94,7 @@ public class DownloadMeinvImage {
 	 *            String
 	 * @throws Exception
 	 */
-	public void saveToFile(String destUrl, String fileName) throws IOException {
+	public void excuteHttpGet(String destUrl, String fileName) throws IOException {
 		FileOutputStream fos = null;
 		BufferedInputStream bis = null;
 		HttpURLConnection httpUrl = null;
@@ -178,7 +178,7 @@ public class DownloadMeinvImage {
 	 * 以行为单位读取文件，常用于读面向行的格式化文件
 	 */
 	public static void readFileByLines(String fileName,
-			DownloadMeinvImage oInstance) {
+			ImageDownloader oInstance) {
 		File file = new File(fileName);
 		BufferedReader reader = null;
 

@@ -57,7 +57,7 @@ public class SpidersHttp {
 		categoryList.add("高雅大气很有范");
 		// categoryList.add("全部");
 		int i = 10000;
-		DownloadMeinvImage oInstance;
+		ImageDownloader oInstance;
 		String baseFilePath = "E:\\Android_Code\\tools\\meinv\\";
 		// File folder = null;
 		for (String category : categoryList) {
@@ -153,14 +153,6 @@ public class SpidersHttp {
 					Meinv m = new Meinv(jb.getString("imageUrl").trim(), desc);
 					meinvList.add(m);
 
-					// Iterator<Meinv> it = meinvList.iterator();
-					// while (it.hasNext()) {
-					// if (it.hashCode() != m.hashCode()) {
-					// meinvList.add(m);
-					// } else {
-					// continue;
-					// }
-					// }
 					// templist.add(m);
 				}
 			}
@@ -191,7 +183,7 @@ public class SpidersHttp {
 			BufferedReader bufferedReader = new BufferedReader(in);
 			StringBuffer strBuffer = new StringBuffer();
 			String line = null;
-			boolean flag = false;
+
 			while ((line = bufferedReader.readLine()) != null) {
 				strBuffer.append(line.trim());
 			}
