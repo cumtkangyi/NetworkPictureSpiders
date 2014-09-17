@@ -24,9 +24,6 @@ public class SpidersHttp {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static final String BASE_URL = "http://image.baidu.com/channel?c=美女&t=";
-	public static final String URL1 = "小清新";
-
 	// static ArrayList<Meinv> meinvList = new ArrayList<Meinv>();
 	static HashSet<Meinv> meinvList = new HashSet<Meinv>();
 	static ArrayList<Category> templist = new ArrayList<Category>();
@@ -66,9 +63,10 @@ public class SpidersHttp {
 		for (String category : categoryList) {
 
 			i++;
+			for (int startIndex = 0; startIndex < 181; startIndex += 60) {
+				JsonToList(executeHttpGet(getUrl(category, startIndex)));
+			}
 
-			JsonToList(executeHttpGet(BASE_URL + category + "&s=0"));
-			JsonToList(executeHttpGet(BASE_URL + category + "&s=1"));
 			// oInstance = new DownloadMeinvImage();
 
 			// for (int k = 0; k < list.size(); k++) {
@@ -195,18 +193,8 @@ public class SpidersHttp {
 			String line = null;
 			boolean flag = false;
 			while ((line = bufferedReader.readLine()) != null) {
-				if (line.trim().startsWith("app.loadImgs(")) {
-					flag = true;
-					line = line.substring(line.indexOf("app.loadImgs(") + 13);
-				}
-				if (line.trim().startsWith("});")) {
-					flag = false;
-				}
-				if (flag) {
-					strBuffer.append(line);
-				}
+				strBuffer.append(line.trim());
 			}
-			strBuffer.append("}");
 			result = strBuffer.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -224,6 +212,20 @@ public class SpidersHttp {
 
 		}
 		return result;
+	}
+
+	/**
+	 * 构造请求url及参数
+	 * 
+	 * @param tag
+	 * @param startIndex
+	 * @return
+	 */
+	static String getUrl(String tag, int startIndex) {
+		String url = "http://image.baidu.com/data/imgs?col=美女&tag=" + tag
+				+ "&sort=0&tag3=&pn=" + startIndex + "&rn=60&p=channel&from=1";
+		System.out.println("Request url： " + url);
+		return url;
 	}
 
 }
