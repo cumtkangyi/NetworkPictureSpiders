@@ -14,7 +14,11 @@ public class Market {
 		// TODO Auto-generated method stub
 		String baseId = "appId_";
 		List<AppInfo> list = new ArrayList<AppInfo>();
-		list.add(new AppInfo(baseId + 1, "美女秀秀", "2.7 MB", "http://kangyi.com",
+		list.add(new AppInfo(
+				baseId + 1,
+				"疯狂的学妹",
+				"1.6 MB",
+				"http://gdown.baidu.com/data/wisegame/e187de444ea6b915/CrazySchoolGirl_3.apk",
 				"给你不一样的感觉！天天都有好心情。"));
 		list.add(new AppInfo(baseId + 2, "美女刮刮", "2.7 MB", "http://kangyi.com",
 				"给你不一样的感觉！天天都有好心情。"));

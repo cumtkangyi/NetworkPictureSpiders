@@ -55,6 +55,8 @@ public class SpidersHttp {
 		categoryList.add("非主流");
 		categoryList.add("短发");
 		categoryList.add("高雅大气很有范");
+		categoryList.add("杉原杏璃");
+		categoryList.add("佐佐木希");
 		// categoryList.add("全部");
 		int i = 10000;
 		ImageDownloader oInstance;
@@ -63,8 +65,17 @@ public class SpidersHttp {
 		for (String category : categoryList) {
 
 			i++;
-			for (int startIndex = 0; startIndex < 181; startIndex += 60) {
-				JsonToList(executeHttpGet(getUrl(category, startIndex)));
+			if (i < 10023) {
+				for (int startIndex = 0; startIndex < 181; startIndex += 60) {
+					JsonToList(executeHttpGet(getUrl(category, startIndex)),
+							"imgs", "imageUrl");
+				}
+			} else {
+				for (int startIndex = 0; startIndex < 181; startIndex += 60) {
+					JsonToList(
+							executeHttpGet(getSpecialUrl(category, startIndex)),
+							"data", "image_url");
+				}
 			}
 
 			// oInstance = new DownloadMeinvImage();
@@ -134,23 +145,23 @@ public class SpidersHttp {
 	 * 
 	 * @param str
 	 */
-	static void JsonToList(String str) {
+	static void JsonToList(String str, String arrayKey, String imageUrlKey) {
 		try {
 
 			long startTime = System.currentTimeMillis();
 			JSONObject jo = new JSONObject(str);
-			JSONArray array = jo.getJSONArray("imgs");
+			JSONArray array = jo.getJSONArray(arrayKey);
 			System.out.println("JSONArray.lenght()= " + array.length());
 			JSONObject jb = null;
 			String desc = "";
 			for (int i = 0; i < array.length(); i++) {
 				jb = new JSONObject(array.get(i).toString());
-				if (jb.has("desc") && jb.has("imageUrl")) {
+				if (jb.has("desc") && jb.has(imageUrlKey)) {
 					desc = jb.getString("desc");
 					if (desc.length() > 10) {
 						desc = desc.substring(0, 10);
 					}
-					Meinv m = new Meinv(jb.getString("imageUrl").trim(), desc);
+					Meinv m = new Meinv(jb.getString(imageUrlKey).trim(), desc);
 					meinvList.add(m);
 
 					// templist.add(m);
@@ -217,6 +228,14 @@ public class SpidersHttp {
 		String url = "http://image.baidu.com/data/imgs?col=美女&tag=" + tag
 				+ "&sort=0&tag3=&pn=" + startIndex + "&rn=60&p=channel&from=1";
 		System.out.println("Request url： " + url);
+		return url;
+	}
+
+	static String getSpecialUrl(String tag, int startIndex) {
+		String url = "http://image.baidu.com/data/star/listjson?pn="
+				+ startIndex + "&rn=60&name=" + tag
+				+ "&sorttype=0&p=star.home&col=明星&tag=" + tag;
+
 		return url;
 	}
 
