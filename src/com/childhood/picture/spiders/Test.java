@@ -1,30 +1,31 @@
 package com.childhood.picture.spiders;
 
-import java.util.HashSet;
-
 public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// ArrayList<User> list = new ArrayList<User>();
-		HashSet<User> list = new HashSet<User>();
-		list.add(new User("name1", "age1"));
-		list.add(new User("name2", "age2"));
-		list.add(new User("name3", "age3"));
-		list.add(new User("name4", "age4"));
-		list.add(new User("name5", "age5"));
+		// HashSet<User> list = new HashSet<User>();
+		// list.add(new User("name1", "age1"));
+		// list.add(new User("name2", "age2"));
+		// list.add(new User("name3", "age3"));
+		// list.add(new User("name4", "age4"));
+		// list.add(new User("name5", "age5"));
+		//
+		// for (int i = 1; i < 5; i++) {
+		// User user = new User("name" + i, "age" + i);
+		// if (!list.contains(user)) {
+		// // list.add(user);
+		// }
+		// list.add(user);
+		// }
+		//
+		// for (User u : list) {
+		// System.out.println(u);
+		// }
 
-		for (int i = 1; i < 5; i++) {
-			User user = new User("name" + i, "age" + i);
-			if (!list.contains(user)) {
-				// list.add(user);
-			}
-			list.add(user);
-		}
-
-		for (User u : list) {
-			System.out.println(u);
-		}
+		String str = "http://sss.jpg";
+		System.out.println(str.substring(0, str.indexOf(".jpg")));
 	}
 
 	static class User {

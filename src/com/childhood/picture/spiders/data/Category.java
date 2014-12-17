@@ -1,4 +1,4 @@
-package com.childhood.picture.spiders;
+package com.childhood.picture.spiders.data;
 
 public class Category {
 	public String url;
